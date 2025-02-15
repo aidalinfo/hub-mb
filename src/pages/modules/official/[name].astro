@@ -1,0 +1,29 @@
+---
+import modules from '../../../modules-minibackup/.index.json';
+const { name } = Astro.params;
+const { module } = Astro.props;
+import ModuleView from '../../../components/internal/ModuleView.vue';
+import '@/styles/globals.css'
+import Layout from '../../../layouts/Layout.astro';
+
+type ModuleData = {
+  version: string;
+  type: string;
+  path: string;
+  metadata: Record<string, any>;
+};
+
+// Fonction pour générer les chemins statiques
+export function getStaticPaths() {
+  const officialModules: Record<string, ModuleData> = modules.official; 
+
+  return Object.keys(officialModules).map((name) => ({
+    params: { name },
+    props: { module: officialModules[name] }, 
+  }));
+}
+import ThemeIcon from '../../../components/ThemeIcon.astro';
+---
+<Layout>
+<ModuleView module={module} name={name} client:load/>
+</Layout>

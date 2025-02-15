@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+
 defineProps({
   path: {
     type: String,
@@ -15,22 +16,44 @@ defineProps({
 </script>
 
 <template>
-<a :href="path" class="block">
+  <a :href="path" class="block">
+    <Card class="border border-transparent hover:border-primary transition bg-background p-4 shadow-lg">
+      <div class="flex items-center gap-4">
+        
+        <!-- IMAGE À GAUCHE -->
+        <div class="w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden" v-if="$slots.image">
+          <slot name="image" />
+        </div>
 
-  <Card class="border-transparent border-4 hover:border-primary transition">
-    <CardHeader class="grid grid-cols-[minmax(0,1fr)_110px] items-start gap-4 space-y-0">
-      <div class="space-y-1">
-        <CardTitle class="flex items-center space-x-2">
-            <slot name="title" />
-        </CardTitle>
-        <CardDescription>
+        <!-- CONTENU PRINCIPAL -->
+        <div class="flex flex-col flex-1 space-y-1">
+          
+          <!-- Titre + Badge sur la même ligne -->
+          <div class="flex items-center gap-2">
+            <CardTitle class="text-lg font-semibold capitalize">
+              <slot name="title" />
+            </CardTitle>
+          </div>
+
+          <!-- Description -->
+          <CardDescription class="text-sm">
             <slot name="description" />
-        </CardDescription>
+          </CardDescription>
+
+        </div>
+
+        <!-- ICÔNE À DROITE -->
+        <div class="flex items-center justify-center text-secondary-foreground">
+          <slot name="icon" />
+        </div>
+
       </div>
-      <div class="flex items-center space-x-1 rounded-md text-secondary-foreground justify-self-end">
-        <slot name="icon" />
-      </div>
-    </CardHeader>
-  </Card>
-</a>
+
+      <!-- Contenu en bas -->
+      <CardContent class="mt-3">
+        <slot name="content" />
+      </CardContent>
+      
+    </Card>
+  </a>
 </template>

@@ -1,5 +1,6 @@
 ---
 import LayoutVue from "@/components/LayoutVue.vue";
+import ThemeIcon from "@/components/ThemeIcon.astro";
 ---
 
 <!doctype html>
@@ -11,6 +12,7 @@ import LayoutVue from "@/components/LayoutVue.vue";
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
+	<ThemeIcon />
 	<body>
 		<LayoutVue client:load>
 		<slot />
