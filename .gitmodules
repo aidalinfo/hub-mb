@@ -1,0 +1,3 @@
+[submodule "src/modules-minibackup"]
+	path = src/modules-minibackup
+	url = git@github.com:aidalinfo/modules-minibackup.git
