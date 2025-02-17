@@ -2,7 +2,7 @@
 import { defineProps, onMounted, ref } from 'vue';
 import LargeContainer from '../layout/LargeContainer.vue';
 import Badge from '../ui/badge/Badge.vue';
-import { SquareTerminal, Ellipsis, ClipboardCopy, FileCode } from 'lucide-vue-next';
+import { SquareTerminal, Ellipsis, ClipboardCopy, FileCode, ArrowLeftToLine } from 'lucide-vue-next';
 import { marked } from 'marked';
 import Toaster from '@/components/ui/toast/Toaster.vue'
 import { Separator } from '@/components/ui/separator'
@@ -61,12 +61,19 @@ const loadMarkdown = async () => {
 onMounted(async() => {
     await loadMarkdown();
 });
-
+const goBack = () => {
+  window.history.back();
+};
 
 </script>
 <template>
-      <Toaster />
-    <LargeContainer>
+    <Toaster />
+      <LargeContainer>
+        <div class="flex items-center mb-4" @click="goBack">
+            <ArrowLeftToLine  class="mr-2" />
+            <span>Retour à la liste des modules</span>
+        </div>
+
         <div class="text-left w-full mb-12 flex items-center space-x-4">
             <img class="h-16 w-16 rounded-full flex-shrink-0" src="/default_module.png" alt="Module Image">
             <div>
